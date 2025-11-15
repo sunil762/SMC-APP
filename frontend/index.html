@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMC Frontend</title>
+</head>
+<body>
+  <h1>SMC Frontend — Deployed</h1>
+  <p>If you see this page, the frontend is served correctly.</p>
+  <script>
+    async function check() {
+      try {
+        const r = await fetch('/api/health');
+        const j = await r.json();
+        document.body.insertAdjacentHTML('beforeend', '<pre>' + JSON.stringify(j) + '</pre>');
+      } catch(e) {
+        document.body.insertAdjacentHTML('beforeend', '<p>API not reachable: ' + e.message + '</p>');
+      }
+    }
+    check();
+  </script>
+</body>
+</html>
